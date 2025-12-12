@@ -6,7 +6,8 @@
 class Players {
 public:
 	vector<Player> GetPlayers();
-	void PopulateList();
+	vector<Player> GetDefaultHeroes();
+	vector<Player> GetDefaultVillains();
 
 private:
 	vector<Player> characters;
