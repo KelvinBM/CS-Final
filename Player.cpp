@@ -49,7 +49,7 @@ void Player::ShowPlayerInfo() {
     cout << playerName << " { " << characterChoice << " }" << endl;// player name and choice number //
     cout << "  Health: " << playerHealth << endl;
     cout << "  Damage: " << playerDamage << endl;
-    cout << "  Cooldown: " << playerCooldown << endl;
+    cout << "  Cooldown: " << playerCooldown << endl << endl;
 }
 
 void Player::AssignPlayerAttacks(vector<Attack> attacks) {

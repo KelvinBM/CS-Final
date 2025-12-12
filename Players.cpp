@@ -1,4 +1,7 @@
 #include "Players.h"
+#include <chrono>
+#include <thread>
+
 
 vector<Player> Players::GetDefaultHeroes() { // only need to call once
 	Player defaultHero = Player();
@@ -35,6 +38,7 @@ vector<Player> Players::GetDefaultHeroes() { // only need to call once
 	players.push_back(secret);
 
 	characters = players;
+	return characters; // If you dont return here it basically just gets rid of the classes after its run, need to likely return for villians too
 }
 
 vector<Player> Players::GetDefaultVillains() { // only need to call once
@@ -78,6 +82,12 @@ vector<Player> Players::GetPlayers() {
 	return characters;
 }
 
+void Players::PrintCharacterInfo() {
+	for (int i = 0; i < characters.size() - 1; i++) {
+		characters.at(i).ShowPlayerInfo();
+		this_thread::sleep_for(chrono::seconds(1));
+	}
+}
 
 
 /*

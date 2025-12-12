@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class Player {
+class Player{
 public:
     Player SelectPlayer();
     string GetName();

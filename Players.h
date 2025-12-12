@@ -3,12 +3,12 @@
 
 #include "Player.h"
 
-class Players {
+class Players : public Player{
 public:
 	vector<Player> GetPlayers();
 	vector<Player> GetDefaultHeroes();
 	vector<Player> GetDefaultVillains();
-
+	void PrintCharacterInfo();
 private:
 	vector<Player> characters;
 };

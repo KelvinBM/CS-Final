@@ -6,7 +6,7 @@ Game::Game() {
 	rounds = 4;
 }
 
-Game::Game(Players heroesList, Players villainsList, int fightingRounds = 4) {
+Game::Game(Players heroesList, Players villainsList, int fightingRounds) {
 	heroes = heroesList;
 	villains = villainsList;
 	rounds = fightingRounds;
