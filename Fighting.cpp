@@ -10,9 +10,11 @@
 using namespace std;
 
 int main() {
-    Intro Test;
-    Test.GameIntroduction();
+  //  Intro Test;
+ //   Test.GameIntroduction();
+    Game play;
+    play.PlayGame();
+
 
     return 0;
 };
-

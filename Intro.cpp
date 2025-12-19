@@ -9,8 +9,5 @@ void Intro::GameIntroduction() {
     cout << "What would you like to be called" << endl;
     getline(cin, name);
     cout << "Ok " << name << " here are the classes you can choose from" << endl;
-    this_thread::sleep_for(chrono::seconds(3));
-    Players TestRun;
-    TestRun.GetDefaultHeroes();
-    TestRun.PrintCharacterInfo();
+    this_thread::sleep_for(chrono::seconds(2));// google
 }

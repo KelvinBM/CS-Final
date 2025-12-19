@@ -55,3 +55,9 @@ void Player::ShowPlayerInfo() {
 void Player::AssignPlayerAttacks(vector<Attack> attacks) {
     playerAttacks = attacks;
 }
+
+void Player::TakeDamage(int amount) {
+    if (amount < 0) return;
+    playerHealth -= amount;
+    if (playerHealth < 0) playerHealth = 0;
+}

@@ -17,6 +17,7 @@ public:
     int GetCooldown();
     void ShowPlayerInfo();
     void AssignPlayerAttacks(vector<Attack> attacks);
+    void TakeDamage(int amount);
 
     Player();
     /// <summary>

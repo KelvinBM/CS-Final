@@ -76,6 +76,7 @@ vector<Player> Players::GetDefaultVillains() { // only need to call once
 	players.push_back(secret);
 
 	characters = players;
+	return characters;
 }
 
 vector<Player> Players::GetPlayers() {
