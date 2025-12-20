@@ -6,12 +6,14 @@
 #include <thread>
 
 Game::Game() {
-	Players herosAssigned = Players();
-	Players villainsAssigned = Players();
+	Players defaults = Players();
+	heroes = defaults.GetDefaultHeroes();
+	villains = defaults.GetDefaultVillains();
+
 	rounds = 4;
 }
 
-Game::Game(Players heroesList, Players villainsList, int fightingRounds) {
+Game::Game(vector<Player> heroesList, vector<Player> villainsList, int fightingRounds) {
 	heroes = heroesList;
 	villains = villainsList;
 	rounds = fightingRounds;

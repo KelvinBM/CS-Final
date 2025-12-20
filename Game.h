@@ -7,12 +7,12 @@ class Game {
 public:
 	void PlayGame();
 	Game();
-	Game(Players heroesList, Players villainsList, int fightingRounds = 4);
+	Game(vector<Player> heroesList, vector<Player> villainsList, int fightingRounds = 4);
 	void FightingScenario1();
 private:
 	Player choice; // character choice of player
-	Players heroes; // choose from
-	Players villains; // fighting against
+	vector<Player> heroes; // choose from
+	vector<Player> villains; // fighting against
 	int rounds;
 
 };
