@@ -13,6 +13,14 @@ Game::Game() {
 	rounds = 4;
 }
 
+Game::Game(int fightingRounds) {
+	Players defaults = Players();
+	heroes = defaults.GetDefaultHeroes();
+	villains = defaults.GetDefaultVillains();
+
+	rounds = fightingRounds;
+}
+
 Game::Game(vector<Player> heroesList, vector<Player> villainsList, int fightingRounds) {
 	heroes = heroesList;
 	villains = villainsList;

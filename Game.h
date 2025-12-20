@@ -5,9 +5,10 @@
 
 class Game {
 public:
-	void PlayGame();
 	Game();
+	Game(int fightingRounds);
 	Game(vector<Player> heroesList, vector<Player> villainsList, int fightingRounds = 4);
+	void PlayGame();
 	void FightingScenario1();
 private:
 	Player choice; // character choice of player
