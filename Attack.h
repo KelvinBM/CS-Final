@@ -12,9 +12,15 @@ class Attack {
 public:
 	void ShowAttackInfo();
 	Attack();
-	Attack(string name, string description, int damage);
+	Attack(string name, int damage, string description, int assignNum);
+	Attack(string name, int damage, int assignNum);
+	void SetName(string name);
+	void SetDamage(int damage);
+	void SetDesc(string desc);
+	void SetAssignedNum(int assignNum);
 
 private:
+	int assignedNum;
 	string attackName;
 	string attackDesc;
 	int attackDamage;
