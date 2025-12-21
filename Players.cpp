@@ -57,7 +57,7 @@ vector<Player> Players::GetDefaultHeroes() { // only need to call once
 	Player secret = Player("YOU WILL NOT SURVIVE", 1000000, 1000000, 0, -1); // cheat character // hidden from players in beginning // they must input random choice and might possibly get it
 	Attacks secretAttacks;
 	secretAttacks.AssignAttack(runAway);// 2
-	secretAttacks.AssignAttack("THE END", 100000000000000000, "YOU ARE COOKED BUDDY", 3);// 2 since this character doesn't run away
+	secretAttacks.AssignAttack("THE END", 1000000000, "YOU ARE COOKED BUDDY", 3);// 2 since this character doesn't run away
 	secret.AssignPlayerAttacks(secretAttacks);
 
 

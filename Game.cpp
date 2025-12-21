@@ -79,7 +79,7 @@ void Game::Intro() {
 	cout << endl;
 
 	for (int i = 0; i < heroes.size() - 1; ++i) {// this allows us to not show the hidden characters
-		
+
 		cout << "\t\t   { " << i << " }";
 		heroes.at(i).ShowPlayerInfo();
 		this_thread::sleep_for(chrono::seconds(1));
@@ -93,6 +93,10 @@ void Game::Intro() {
 	int choice = 0;
 	cout << "Enter Selection (number): ";
 	cin >> choice;
+	if (choice > heroes.size()-1 || choice < 0) {
+		cout << "Invalid choice, choosing random hero for you..." << endl;
+		choice = rand() % (heroes.size() - 1);
+	}
 
 	cout << endl << endl << endl << endl << endl;
 	cout << endl << endl << endl << endl << endl;
@@ -103,9 +107,14 @@ void Game::Intro() {
 	chosenPlayer = heroes.at(choice);
 
 
+<<<<<<< HEAD
 	int villianChoice = rand() % villains.size();
 	enemy = villains.at(villianChoice);
 	//enemy = villains.at(0);// for testing
+=======
+	int villianChoice = rand() % villains.size() + 1;
+	enemy = villains.at(villianChoice);
+>>>>>>> 4f2f7dbb378e4e0a1495d741a3abbef69a9d8749
 
 	cout << endl << endl << endl << endl << endl;
 	cout << endl << endl << endl << endl << endl;
@@ -133,8 +142,8 @@ void Game::Intro() {
 	cout << "...................................................." << endl;
 	cout << endl;
 	cout << endl << endl;
-
-	this_thread::sleep_for(chrono::seconds(5));
+	
+	this_thread::sleep_for(chrono::seconds(3));
 }
 
 void Game::RunTheFights() {
@@ -153,7 +162,7 @@ void Game::RunTheFights() {
 			enemyPleads = true;
 			enemy.GetCharacterAttacks().AssignAttack("Plead", 0, "Maybe he'll let me live", chosenPlayer.GetTotalAttacksCount() + 1); // makes a new attack
 		}
-		
+
 
 		EnemyAttacks();
 		if (chosenPlayer.GetHealth() <= 0) break;
@@ -170,12 +179,12 @@ void Game::TimeToAttack() {
 	cout << "-----------------------------------------------------------------------------" << endl;
 	cout << endl;
 
-	this_thread::sleep_for(chrono::seconds(3));
+	this_thread::sleep_for(chrono::seconds(1));
 
 	cout << endl;
 	cout << "    *[ It's your turn to attack, pick one of your available actions ]*" << endl;
 	cout << endl << endl;
-	this_thread::sleep_for(chrono::seconds(5));
+	this_thread::sleep_for(chrono::seconds(2));
 
 	cout << "    Available actions" << endl << endl;
 	cout << "\t  1) Default Attack" << endl; // "\n 2) Do nothing(other options soon)" << endl;
@@ -334,7 +343,7 @@ void Game::EnemyAttacks() {
 		cout << enemy.GetName() << " falls down and cries" << endl;
 		this_thread::sleep_for(chrono::seconds(2));
 	}
-	
+
 
 	cout << endl;
 	cout << endl;
@@ -351,9 +360,6 @@ void Game::Waiting() {
 	cout << "..";
 	this_thread::sleep_for(chrono::seconds(1));
 	cout << "..";
-	this_thread::sleep_for(chrono::seconds(1));
-	cout << "..";
-	this_thread::sleep_for(chrono::seconds(1));
 	cout << endl << endl;
 }
 
