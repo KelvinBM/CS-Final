@@ -75,7 +75,7 @@ void Game::Intro() {
 
 	this_thread::sleep_for(chrono::seconds(3));
 	cout << "---------------------------" << endl;
-	this_thread::sleep_for(chrono::seconds(2));
+	this_thread::sleep_for(chrono::seconds(1));
 	cout << endl;
 
 	for (int i = 0; i < heroes.size() - 1; ++i) {// this allows us to not show the hidden characters

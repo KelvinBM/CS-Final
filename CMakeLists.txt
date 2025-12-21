@@ -14,5 +14,9 @@ add_executable(CS_Final
         Players.cpp
         Players.h
         Game.cpp
-        Intro.cpp
-        Intro.h)
+        Intro.h
+        Game.h
+        Attacks.cpp
+        Attacks.h
+        WeaponChoice.h)
+

@@ -53,6 +53,52 @@ int main() {
 
         Prologue(playerName);
         Player customPlayer = Player(playerName, 100, 8, 0, 0);
+        cout << "Before you start your adventure what would you like to be called?" << endl;
+        this_thread::sleep_for(chrono::seconds(1));
+        string playerName;
+        cin >> playerName;
+        int Choice;
+        Choice = Prologue(playerName);
+        Player customPlayer = Player(playerName, 100, 2, 0, 0);
+        if (Choice == 1) {
+            // Thunder Fang
+            Attacks customAttacks;
+            Attack runAway = Attack();
+            Attack punch = Attack("Punch", 5, 3);
+            customAttacks.AssignAttack(runAway);
+            customAttacks.AssignAttack(punch);
+
+            customAttacks.AssignAttack("Spark Slash", 12, 4);
+            customAttacks.AssignAttack("Chain Lightning", 18, "A bolt that arcs to multiple foes", 5);
+            customAttacks.AssignAttack("Thunder Nova", 25, "A burst of storm energy around the wielder", 6);
+
+            customPlayer.AssignPlayerAttacks(customAttacks);
+
+
+            cout << endl << "NEW MOVES" << endl;
+            cout << "\t  1) Default Attack" << endl;
+            cout << "\t  - Damage: " << customPlayer.GetAttackDamage();
+            customPlayer.ShowAttacksInfo();
+        }
+        else if (Choice == 2) {
+            // Sky Piercers
+            Attacks customAttacks;
+            Attack runAway = Attack();
+            Attack punch = Attack("Punch", 5, 3);
+            customAttacks.AssignAttack(runAway);
+            customAttacks.AssignAttack(punch);
+
+            customAttacks.AssignAttack("Piercing Stab", 10, 4);
+            customAttacks.AssignAttack("Gale Dance", 15, "A flurry of dagger strikes", 5);
+            customAttacks.AssignAttack("Tempest Rush", 22, "Dash through an enemy with great speed", 6);
+
+            customPlayer.AssignPlayerAttacks(customAttacks);
+
+            cout << endl << "NEW MOVES" << endl;
+            cout << "\t  1) Default Attack" << endl;
+            cout << "\t  - Damage: " << customPlayer.GetAttackDamage();
+            customPlayer.ShowAttacksInfo();
+        }
 
 
     }

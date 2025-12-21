@@ -91,7 +91,7 @@ vector<Attack> Attacks::GetAttacks() {
 void Attacks::DisplayAttacksInfo() {
 	
 	cout << endl << endl;
-	cout << "\t -- OTHER OPTIONS --" << endl;
+	cout << "\t -- MOVESET --" << endl;
 	cout << endl;
 	for (int i = 0; i < GetNumAttacks(); i++) {
 		attacks.at(i).ShowAttackInfo();
