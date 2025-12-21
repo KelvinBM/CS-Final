@@ -7,6 +7,9 @@
 #include "Game.h"
 #include "Players.h"
 #include "Intro.h"
+#include "TrialOne.h"
+#include "TrialTwo.h"
+#include "TrialThree.h"
 using namespace std;
 
 int WorthinessScore = 0;
@@ -51,13 +54,12 @@ int main() {
         cout << "You have chosen the Story Mode" << endl;
         cout << "Before you start your adventure what would you like to be called? " << endl;
         string playerName;
-        getline(cin, playerName);
+        cin >> playerName;
 
         int Choice;
         Choice = Prologue(playerName);
         Player customPlayer = Player(playerName, 100, 2, 0, 0);
         if (Choice == 1) {
-            // Thunder Fang
             Attacks customAttacks;
             Attack runAway = Attack();
             Attack punch = Attack("Punch", 5, 3);
@@ -77,7 +79,6 @@ int main() {
             customPlayer.ShowAttacksInfo();
         }
         else if (Choice == 2) {
-            // Sky Piercers
             Attacks customAttacks;
             Attack runAway = Attack();
             Attack punch = Attack("Punch", 5, 3);
@@ -101,7 +102,19 @@ int main() {
         cout << "*The being bangs his staff on the ground again and a door materializes in front of you*" << endl;
         this_thread::sleep_for(chrono::seconds(2));
         space.SpaceMax();
-        cout << "Trial One....";
+        cout << "Trial One...." << endl;
+        cout << "Welcome to the third and final trial. In this trial you will face... yourself." << endl;
+        Game T3;
+        bool trial3result = TrialThree(T3, customPlayer);
+        if  (trial3result) {
+            cout << "Well done hero, you have succeeded in defeating your shadow self." << endl;
+            cout << "Return to the Shadow Being to see if you're worthy." << endl;
+            WorthinessScore += 40;
+        }
+        else {
+            cout << "You have failed to beat your shadow self." << endl;
+            cout << "Return to the Shadow Being to see if you're worthy." << endl;
+        }
     }
 
 

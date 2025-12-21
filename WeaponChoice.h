@@ -16,6 +16,7 @@ int WeaponChoice() {
         cout << "You have chosen Thunder Fang..." << endl;
         cout << "You grab the sword and feel a powerful surge of electricity flow through your body." << endl;
         cout << "You feel as if you can command the power of the storm itself..." << endl;
+        this_thread::sleep_for(chrono::seconds(3));
     }
     else if (weapon == 2) {
         cout << "You have chosen Sky Piercers..." << endl;

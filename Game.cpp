@@ -455,9 +455,10 @@ void Game::WriteSentenceNoEndl(string sentence) {
 	}
 }
 
-void Game::StoryModeFight(Player PlayerCharacter, Player EnemyChar) {
+bool Game::StoryModeFight(Player PlayerCharacter, Player EnemyChar) {
 	cout << "Starting fight between " << PlayerCharacter.GetName() << " and " << EnemyChar.GetName() << "\n";
 	bool playersTurn = true;
+	bool LightningStrikeUsed = false;
 	while (PlayerCharacter.GetHealth() > 0 && EnemyChar.GetHealth() > 0) {
 		cout << "---------------------------------------------\n";
 		cout << PlayerCharacter.GetName() << " HP: " << PlayerCharacter.GetHealth() << "  |  " << EnemyChar.GetName() << " HP: " << EnemyChar.GetHealth() << "\n";
@@ -513,4 +514,6 @@ void Game::StoryModeFight(Player PlayerCharacter, Player EnemyChar) {
 		cout << EnemyChar.GetName() << " has been defeated.\n";
 	}
 	cout << "\n";
+	if (EnemyChar.GetHealth() <= 0 && PlayerCharacter.GetHealth() > 0) return true;
+	return false;
 }

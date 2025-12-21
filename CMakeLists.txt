@@ -18,5 +18,10 @@ add_executable(CS_Final
         Game.h
         Attacks.cpp
         Attacks.h
-        WeaponChoice.h)
+        WeaponChoice.h
+        SwordArt.h
+        TrialOne.h
+        TrialTwo.h
+        "TrialThree.h"
+        TrialThree.cpp)
 

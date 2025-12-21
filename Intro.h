@@ -64,10 +64,10 @@
         cout << name << ": Who... who are you? Where am I!" << endl;
         this_thread::sleep_for(chrono::seconds(2));
         cout << "Shadow Being: Silence. You have been chosen for a great purpose." << endl;
-        cout << name << ": Chosen? For what?" << endl;
+        cout << name << ": Chosen? For what?" << endl << endl;
         this_thread::sleep_for(chrono::seconds(2));
         cout << "You are the descendant of the ancient hero who once saved this world from destruction. Kael Thunderborn" << endl;
-        cout << "And now it is your turn to save the world from the impending doom that is awaiting.\n But first you must prove yourself worthy." << endl;
+        cout << "And now it is your turn to save the world from the impending doom that is awaiting.\n But first you must prove yourself worthy." << endl << endl;
         this_thread::sleep_for(chrono::seconds(2));
         cout << "*The creature hits the ground with its staff, you fall over from the shaking of the ground but 2 pedestals rise from the ground, So bright that you would think they are the sun itself*" << endl;
         cout << "Shadow Being: On each pedestal lies a weapon from your ancestor. Choose wisely " << name << "." << endl << endl << endl;
