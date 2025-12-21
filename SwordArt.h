@@ -1,8 +1,35 @@
-//
-// Created by miken on 12/21/2025.
-//
-
-#ifndef CS_FINAL_SWORDART_H
-#define CS_FINAL_SWORDART_H
-
-#endif //CS_FINAL_SWORDART_H
+#pragma once
+#include <iostream>
+using namespace std;
+void Sword() {
+    cout << "        )         " << endl;
+    cout << "          (            " << endl;
+    cout << "        '    }      " << endl;
+    cout << "      (    '      " << endl;
+    cout << "     '      (   " << endl;
+    cout << "      )  |    ) " << endl;
+    cout << "    '   /|\\    `" << endl;
+    cout << "   )   / | \\  ` )   " << endl;
+    cout << "  {    | | |  {   " << endl;
+    cout << " }     | | |  ." << endl;
+    cout << "  '    | | |    )" << endl;
+    cout << " (    /| | |\\    ." << endl;
+    cout << "  .  / | | | \\  (" << endl;
+    cout << "}    \\ \\ | / /  .        " << endl;
+    cout << " (    \\ `-' /    }" << endl;
+    cout << " '    / ,-. \\    ' " << endl;
+    cout << "  }  / / | \\ \\  }" << endl;
+    cout << " '   \\ | | | /   } " << endl;
+    cout << "  (   \\| | |/  (" << endl;
+    cout << "    )  | | |  )" << endl;
+    cout << "    .  | | |  '" << endl;
+    cout << "       J | L" << endl;
+    cout << " /|    J_|_L    |\\ " << endl;
+    cout << " \\ \\___/ o \\___/ /" << endl;
+    cout << "  \\_____ _ _____/" << endl;
+    cout << "        |-|" << endl;
+    cout << "        |-|" << endl;
+    cout << "        |-|" << endl;
+    cout << "   hs  ,'-'." << endl;
+    cout << "       '---'" << endl;
+}
