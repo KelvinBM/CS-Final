@@ -54,6 +54,10 @@ void Game::PlayGame() {
 	int choice = 0;
 	cout << "Enter Selection (number): ";
 	cin >> choice;
+	if (choice > heroes.size()-1 || choice < 0) {
+		cout << "Invalid choice, choosing random hero for you..." << endl;
+		choice = rand() % (heroes.size() - 1);
+	}
 
 	cout << endl << endl << endl << endl << endl;
 	cout << endl << endl << endl << endl << endl;
@@ -94,7 +98,7 @@ void Game::PlayGame() {
 	cout << endl;
 	cout << endl << endl;
 	
-	this_thread::sleep_for(chrono::seconds(5));
+	this_thread::sleep_for(chrono::seconds(3));
 
 	SpaceMax();
 
@@ -125,12 +129,12 @@ void Game::TimeToAttack() {
 	cout << "-----------------------------------------------------------------------------" << endl;
 	cout << endl;
 
-	this_thread::sleep_for(chrono::seconds(3));
+	this_thread::sleep_for(chrono::seconds(1));
 
 	cout << endl;
 	cout << "    *[ It's your turn to attack, pick one of your available actions ]*" << endl;
 	cout << endl << endl;
-	this_thread::sleep_for(chrono::seconds(5));
+	this_thread::sleep_for(chrono::seconds(2));
 
 	cout << "   Available actions" << endl << endl;
 	cout << "\t  1) Default Attack" << endl; // "\n 2) Do nothing(other options soon)" << endl;
@@ -212,9 +216,6 @@ void Game::Waiting() {
 	cout << "..";
 	this_thread::sleep_for(chrono::seconds(1));
 	cout << "..";
-	this_thread::sleep_for(chrono::seconds(1));
-	cout << "..";
-	this_thread::sleep_for(chrono::seconds(1));
 	cout << endl << endl;
 }
 
