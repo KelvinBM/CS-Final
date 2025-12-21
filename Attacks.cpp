@@ -57,6 +57,7 @@ void Attacks::AssignAttack(string name, int damage, int assignedNum) {
 	attack.SetName(name);
 	attack.SetDamage(damage);
 	attack.SetDesc("No description");
+	attack.SetAssignedNum(assignedNum);
 
 	numOfAttacks++;
 	attacks.push_back(attack);
@@ -73,6 +74,7 @@ void Attacks::AssignAttack(string name, int damage, string desc, int assignedNum
 	attack.SetName(name);
 	attack.SetDamage(damage);
 	attack.SetDesc(desc);
+	attack.SetAssignedNum(assignedNum);
 
 	numOfAttacks++;
 	attacks.push_back(attack);
@@ -89,7 +91,7 @@ vector<Attack> Attacks::GetAttacks() {
 void Attacks::DisplayAttacksInfo() {
 	
 	cout << endl << endl;
-	cout << "-- ATTACKS --" << endl;
+	cout << "\t -- OTHER OPTIONS --" << endl;
 	cout << endl;
 	for (int i = 0; i < GetNumAttacks(); i++) {
 		attacks.at(i).ShowAttackInfo();
