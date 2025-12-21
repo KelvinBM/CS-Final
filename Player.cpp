@@ -123,8 +123,12 @@ void Player::TakeDamage(int amount) {
 void Player::HealUp() {
     int healUp = 5;
     int currHealth = GetHealth();
-    if (healUp + currHealth <= currHealth) {
+    if (healUp + currHealth <= GetMaxHealth()) {
         AssignPlayerHealth(healUp + currHealth);
+        cout << endl;
+        cout << GetName() << "'s health recuperated to " << GetHealth() << " by " << healUp << " hp";
+        this_thread::sleep_for(chrono::seconds(3));
+        cout << endl;
     }
     else {
         AssignPlayerHealth(GetMaxHealth());
@@ -132,5 +136,17 @@ void Player::HealUp() {
 }
 
 void Player::HealUp(int healthToHeal) {
-
+    if (healthToHeal > 0) {
+        int currHealth = GetHealth();
+        if (healthToHeal + currHealth <= GetMaxHealth()) {
+            AssignPlayerHealth(healthToHeal + currHealth);
+            cout << endl;
+            cout << GetName() << "'s health recuperated to " << GetHealth() << " by " << healthToHeal << " hp";
+            this_thread::sleep_for(chrono::seconds(3));
+            cout << endl;
+        }
+        else {
+            AssignPlayerHealth(GetMaxHealth());
+        }
+    }
 }
