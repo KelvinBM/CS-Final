@@ -51,12 +51,6 @@ int main() {
         string playerName;
         getline(cin, playerName);
 
-        Prologue(playerName);
-        Player customPlayer = Player(playerName, 100, 8, 0, 0);
-        cout << "Before you start your adventure what would you like to be called?" << endl;
-        this_thread::sleep_for(chrono::seconds(1));
-        string playerName;
-        cin >> playerName;
         int Choice;
         Choice = Prologue(playerName);
         Player customPlayer = Player(playerName, 100, 2, 0, 0);
