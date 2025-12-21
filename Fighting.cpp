@@ -1,6 +1,6 @@
 // Fighting.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
+#include "SwordArt.h"
 #include <iostream>
 #include "Attack.h"
 #include "Player.h"
@@ -8,8 +8,10 @@
 #include "Players.h"
 #include "Intro.h"
 using namespace std;
-int main() {
 
+int WorthinessScore = 0;
+int main() {
+    Game space;
     cout << "Hello Player this game is a turned based fighting game where you choose a hero and fight against villains." << endl;
     cout << "You can also play the story mode if you want more than just the fighting aspect." << endl;
     cout << "Which would you like to do \n 1. Fighting Mode \n 2. Story Mode" << endl;
@@ -50,9 +52,9 @@ int main() {
             customAttacks.AssignAttack(runAway);
             customAttacks.AssignAttack(punch);
 
-            customAttacks.AssignAttack("Spark Slash", 12, 4);
-            customAttacks.AssignAttack("Chain Lightning", 18, "A bolt that arcs to multiple foes", 5);
-            customAttacks.AssignAttack("Thunder Nova", 25, "A burst of storm energy around the wielder", 6);
+            customAttacks.AssignAttack("Spark Slash", 12,"Chance to apply lighting damage(enemy takes 10 damage for 2 turns)", 4);
+            customAttacks.AssignAttack("Chain Lightning", 18, "A bolt that arcs to multiple foes, chance to stun enemy", 5);
+            customAttacks.AssignAttack("Thunder Nova", 25, "A burst of storm energy around the wielder, chance to parry/block enemies attack", 6);
 
             customPlayer.AssignPlayerAttacks(customAttacks);
 
@@ -71,8 +73,8 @@ int main() {
             customAttacks.AssignAttack(punch);
 
             customAttacks.AssignAttack("Piercing Stab", 10, 4);
-            customAttacks.AssignAttack("Gale Dance", 15, "A flurry of dagger strikes", 5);
-            customAttacks.AssignAttack("Tempest Rush", 22, "Dash through an enemy with great speed", 6);
+            customAttacks.AssignAttack("Lightning Overdriver", 15, "Plant your daggers into the floor channeling lightning through them (chance to damage yourself)", 5);
+            customAttacks.AssignAttack("Shadow Step", 22, "Dash and disappear before striking the enemy from behind", 6);
 
             customPlayer.AssignPlayerAttacks(customAttacks);
 
@@ -81,8 +83,13 @@ int main() {
             cout << "\t  - Damage: " << customPlayer.GetAttackDamage();
             customPlayer.ShowAttacksInfo();
         }
-
-
+    cout << "Shadow Being: In order to prove your worthiness you must go through 3 trials that will test your skills" << endl;
+    this_thread::sleep_for(chrono::seconds(2));
+        cout << "To begin walk through that door" << endl;
+        cout << "*The being bangs his staff on the ground again and a door materializes in front of you*" << endl;
+        this_thread::sleep_for(chrono::seconds(2));
+        space.SpaceMax();
+        cout << "Trial One....";
     }
 
 

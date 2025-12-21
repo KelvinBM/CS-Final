@@ -3,9 +3,12 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include "Game.h"
 #include "WeaponChoice.h"
+#include "SwordArt.h"
 
     int Prologue(string name) {
+        Game space;
         cout << "You wake up in a dungeon with no memory of how you got there." << endl;
         cout << "And your head is bleeding..." << endl;
         cout << "When you finally come to your senses you see a giant creature with a cloak standing in front of you." << endl
@@ -47,8 +50,9 @@
         cout << "  /`                          \\         //   " << endl;
         cout << "/`                            |        ||    " << endl;
         cout << "`-.___,-.      .-.        ___,'        (/    " << endl;
-        cout << "         `---'`   `'----'`" << endl << endl << endl << endl;
+        cout << "         `---'`   `'----'`";
         this_thread::sleep_for(chrono::seconds(2));
+        space.SpaceMax();
         cout << "You look at it and where its face should be, there is only darkness as well as a eerie feeling as you stare into it." << endl;
         cout << "Its so large that you have to look straight up to even see its head." << endl;
         this_thread::sleep_for(chrono::seconds(3));
@@ -69,7 +73,8 @@
         cout << "Shadow Being: On each pedestal lies a weapon from your ancestor. Choose wisely " << name << "." << endl << endl << endl;
         int weaponChosen = WeaponChoice();
         if (weaponChosen == 1) {
-            cout << "Shadow Being: Ah, the Thunder Fang. A fine choice indeed." << endl;
+            cout << "Shadow Being: Ah, the Thunder Fang. A fine choice indeed." << endl << endl << endl;
+            Sword();
         }
         else {
             cout << "Shadow Being: The Sky Piercers, swift and deadly. An excellent choice." << endl;

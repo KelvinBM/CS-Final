@@ -19,6 +19,7 @@ public:
 	void SpaceMax();
 	void Waiting();
 	void WriteSentenceNoEndl(string sentence);
+	void StoryModeFight(Player PlayerCharacter, Player EnemyChar);
 private:
 	Player chosenPlayer; // character choice of player
 	Player enemy;

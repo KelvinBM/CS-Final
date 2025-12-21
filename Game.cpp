@@ -5,6 +5,8 @@
 #include <chrono>
 #include <thread>
 
+using namespace std;
+
 Game::Game() {
 	srand(time(0));
 	Players defaults = Players();
@@ -400,4 +402,64 @@ void Game::WriteSentenceNoEndl(string sentence) {
 			this_thread::sleep_for(chrono::milliseconds(150));
 		}
 	}
+}
+
+void Game::StoryModeFight(Player PlayerCharacter, Player EnemyChar) {
+	cout << "Starting fight between " << PlayerCharacter.GetName() << " and " << EnemyChar.GetName() << "\n";
+	bool playersTurn = true;
+	while (PlayerCharacter.GetHealth() > 0 && EnemyChar.GetHealth() > 0) {
+		cout << "---------------------------------------------\n";
+		cout << PlayerCharacter.GetName() << " HP: " << PlayerCharacter.GetHealth() << "  |  " << EnemyChar.GetName() << " HP: " << EnemyChar.GetHealth() << "\n";
+		cout << "---------------------------------------------\n";
+
+		if (playersTurn) {
+			cout << "It's " << PlayerCharacter.GetName() << "'s turn.\n";
+			cout << "1) Default attack (damage: " << PlayerCharacter.GetAttackDamage() << ")\n";
+			PlayerCharacter.ShowAttacksInfo();
+			int choice = 1;
+			cout << "Choose action (enter number, default 1): ";
+			cin >> choice;
+
+			if (choice <= 1) {
+				int dmg = PlayerCharacter.GetAttackDamage();
+				cout << PlayerCharacter.GetName() << " deals " << dmg << " damage to " << EnemyChar.GetName() << "\n";
+				EnemyChar.TakeDamage(dmg);
+			}
+			else {
+				Attack atk = PlayerCharacter.GetChosenAttack(choice);
+				int dmg = atk.GetAttackDamage();
+				cout << PlayerCharacter.GetName() << " uses " << atk.GetAttackName() << " and deals " << dmg << " damage\n";
+				EnemyChar.TakeDamage(dmg);
+			}
+		}
+		else {
+			cout << "It's " << EnemyChar.GetName() << "'s turn.\n";
+			int numAtk = EnemyChar.GetTotalAttacksCount();
+			int choice = 1;
+			if (numAtk > 1) choice = (rand() % numAtk) + 1;
+			if (choice <= 1) {
+				int dmg = EnemyChar.GetAttackDamage();
+				cout << EnemyChar.GetName() << " deals " << dmg << " damage to " << PlayerCharacter.GetName() << "\n";
+				PlayerCharacter.TakeDamage(dmg);
+			}
+			else {
+				Attack atk = EnemyChar.GetChosenAttack(choice);
+				int dmg = atk.GetAttackDamage();
+				cout << EnemyChar.GetName() << " uses " << atk.GetAttackName() << " and deals " << dmg << " damage\n";
+				PlayerCharacter.TakeDamage(dmg);
+			}
+		}
+
+		playersTurn = !playersTurn;
+		this_thread::sleep_for(chrono::seconds(1));
+	}
+
+	cout << "\nFight ended.\n";
+	if (PlayerCharacter.GetHealth() <= 0) {
+		cout << PlayerCharacter.GetName() << " has been defeated.\n";
+	}
+	if (EnemyChar.GetHealth() <= 0) {
+		cout << EnemyChar.GetName() << " has been defeated.\n";
+	}
+	cout << "\n";
 }
