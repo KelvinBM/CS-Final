@@ -79,6 +79,10 @@ Attack Player::GetChosenAttack(int attackChoice) {
     return currAttack;
 }
 
+int Player::GetTotalAttacksCount() {
+    return playerAttacks.GetNumAttacks() + 1;// to account for default character attack
+}
+
 
 void Player::ShowPlayerInfo() {
     cout << endl;

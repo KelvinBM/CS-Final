@@ -9,6 +9,7 @@ public:
 	Game(int fightingRounds);
 	Game(vector<Player> heroesList, vector<Player> villainsList, int fightingRounds = 4);
 	void PlayGame();
+	void Intro();
 	void RunTheFights();
 	void TimeToAttack();
 	void EnemyAttacks();
@@ -17,11 +18,16 @@ public:
 	void EnemyInDisdainLevel2();
 	void SpaceMax();
 	void Waiting();
+	void WriteSentenceNoEndl(string sentence);
 private:
 	Player chosenPlayer; // character choice of player
 	Player enemy;
 	vector<Player> heroes; // choose from
 	vector<Player> villains; // fighting against
+	bool enemySpares = false;
+	bool youSpare = true;
+	bool enemyPleads = false;
+	bool youPlead = false;
 	int rounds;
 
 };

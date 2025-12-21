@@ -18,6 +18,7 @@ public:
     int GetMaxHealth();
     int GetAttackDamage();
     int GetCooldown();
+    int GetTotalAttacksCount();
     Attacks GetCharacterAttacks();
     Attack GetChosenAttack(int attackChoice);
     void ShowPlayerInfo();
