@@ -81,16 +81,20 @@ vector<Player> Players::GetDefaultVillains() { // only need to call once
 	Attack punch = Attack("Punch", 7, 3);// assigned (3)
 
 	// -------------------------------------------------------------------------------------------- //
-	Player defaultVillain = Player();
+	Player defaultVillain = Player("Regular Villain Guy", 30, 10, 0, 0);
 	// attack types for defaultVillain are set through constructor default
-
+	Attacks defaultAttacks;
+	defaultAttacks.AssignAttack(runAway);// 2
+	defaultAttacks.AssignAttack(punch);// 3
+	defaultAttacks.AssignAttack("Another Punch", 20, "Just another of my regular punches", 4);// 4
+	defaultVillain.AssignPlayerAttacks(defaultAttacks);
 
 	// -------------------------------------------------------------------------------------------- //
 	Player tickleMaster = Player("The Tickle Master", 120, 25, 1, 1); // buff build // long cooldown
 	Attacks tickleMasterAttacks;
 	tickleMasterAttacks.AssignAttack(runAway);// 2
 	tickleMasterAttacks.AssignAttack(punch);// 3
-	tickleMasterAttacks.AssignAttack("Never Ending", 27, "...Maybe it's better to not say", 4);// 4
+	tickleMasterAttacks.AssignAttack("Tickle", 27, "...Maybe it's better to not say", 4);// 4
 	tickleMaster.AssignPlayerAttacks(tickleMasterAttacks);
 
 

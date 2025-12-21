@@ -23,7 +23,7 @@ Attack::Attack(string name, int damage, string description, int assignNum) {
 Attack::Attack(string name, int damage, int assignNum) {
 	attackName = name;
 	attackDamage = damage;
-	attackDesc = "No description";
+	attackDesc = "...";
 	assignedNum = assignNum;
 }
 
@@ -60,7 +60,7 @@ int Attack::GetAttackDamage() {
 }
 
 string Attack::GetAttackName() {
-	return attackDesc;
+	return attackName;
 }
 
 string Attack::GetAttackDesc() {
