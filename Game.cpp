@@ -28,43 +28,92 @@ Game::Game(vector<Player> heroesList, vector<Player> villainsList, int fightingR
 }
 
 void Game::FightingScenario1() {
-
+	// MODIFY : STILL DECIDING IF INCLUDING SCENARIOS OR NOT //
 }
 
 void Game::PlayGame() {
-	Players Choices;
-	vector<Player> heroesList = Choices.GetDefaultHeroes();
-	vector<Player> villainsList = Choices.GetDefaultVillains();
 
 	cout << "Choose your hero by number:" << endl;
-	for (int i = 0; i < heroesList.size() - 1; ++i) {
-		cout << i << ") ";
-		heroesList.at(i).ShowPlayerInfo();
+	this_thread::sleep_for(chrono::seconds(2));
+
+	for (int i = 0; i < heroes.size() - 1; ++i) {// this allows us to not show the hidden characters
+		cout << "------------------------" << endl;
+		cout << endl;
+
+		cout << "\t\t   { " << i << " }";
+		heroes.at(i).ShowPlayerInfo();
+		this_thread::sleep_for(chrono::seconds(1));
 	}
+	cout << "------------------------" << endl;
+
+	cout << endl << endl;
 
 	int choice = 0;
-	cout << "Enter number: ";
+	cout << "Enter Selection (number): ";
 	cin >> choice;
 
-	Player player = heroesList.at(choice);
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
 
-	srand(time(NULL)); //google
-	int villianChoice = rand() % villainsList.size();
-	Player enemy = villainsList.at(villianChoice);
+	chosenPlayer = heroes.at(choice);
 
-	cout << "Matchup: " << player.GetName() << " vs " << enemy.GetName() << endl;
 
-	while (player.GetHealth() > 0 && enemy.GetHealth() > 0) {
-		cout << "Your Health: " << player.GetHealth() << "  Enemy Health: " << enemy.GetHealth() << endl;
-		cout << "Choose action: \n 1) Attack \n 2) Do nothing(other options soon)" << endl;
+	srand(time(0));
+	int villianChoice = rand() % villains.size();
+	enemy = villains.at(villianChoice);
+
+	cout << "...................................................." << endl;
+	cout << endl;
+
+	cout << "| YOUR CHOICE |" << endl;
+	chosenPlayer.ShowPlayerInfo();
+
+	cout << endl;
+
+	cout << "  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~" << endl;
+	cout << endl;
+
+	cout << "| MATCHUP |" << endl;
+	enemy.ShowPlayerInfo();
+	cout << endl;
+	cout << "...................................................." << endl;
+	cout << endl;
+	
+	this_thread::sleep_for(chrono::seconds(5));
+
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+
+	RunTheFights();
+}
+
+void Game::RunTheFights() {
+	while (chosenPlayer.GetHealth() > 0 && enemy.GetHealth() > 0) {
+		cout << "-----------------------------------------------------------" << endl;
+		cout << "   Your Health: " << chosenPlayer.GetHealth() << " ||  Enemy Health: " << enemy.GetHealth() << " | " << endl;
+		cout << "-----------------------------------------------------------" << endl;
+		cout << endl;
+
+		// attacks to choose from //
+		chosenPlayer.ShowAttacksInfo();
+
+
+
 		int action;
 		cin >> action;
 		if (action == 1) {
-			int dmg = player.GetAttackDamage();
+			int dmg = chosenPlayer.GetAttackDamage();
 			this_thread::sleep_for(chrono::seconds(1));
 			cout << "You attack and deal " << dmg << " damage." << endl;
 			enemy.TakeDamage(dmg);
-		} else {
+		}
+		else {
 			this_thread::sleep_for(chrono::seconds(1));
 			cout << "You do nothing" << endl;
 		}
@@ -72,13 +121,21 @@ void Game::PlayGame() {
 		if (enemy.GetHealth() <= 0) break;
 
 		int enemyDmg;
-			enemyDmg = rand() % (enemy.GetAttackDamage() + 1);
+		enemyDmg = rand() % (enemy.GetAttackDamage() + 1);
 		cout << "Enemy attacks and deals " << enemyDmg << " damage" << endl;
-		player.TakeDamage(enemyDmg);
+		chosenPlayer.TakeDamage(enemyDmg);
 	}
-	if (player.GetHealth() <= 0) {
+	if (chosenPlayer.GetHealth() <= 0) {
 		cout << "You died. Game over." << endl;
-	} else {
+	}
+	else {
 		cout << "You Defeated The Enemy." << endl;
 	}
+}
+
+void Game::TimeToAttack() {
+	cout << endl;
+	cout << "\t It's your turn to attack" << endl;
+
+	cout << "\t Pick one of your available actions" << endl;
 }

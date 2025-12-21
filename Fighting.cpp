@@ -12,7 +12,7 @@ using namespace std;
 int main() {
   //  Intro Test;
  //   Test.GameIntroduction();
-    Game play;
+    Game play = Game(7);
     play.PlayGame();
 
 

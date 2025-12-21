@@ -5,19 +5,25 @@
 #include <string>
 #include <vector>
 #include "Attack.h"
+#include "Attacks.h"
 
 using namespace std;
 
 class Player{
 public:
-    Player SelectPlayer();
+    //Player SelectPlayer();
     string GetName();
     int GetHealth();
+    int GetMaxHealth();
     int GetAttackDamage();
     int GetCooldown();
     void ShowPlayerInfo();
-    void AssignPlayerAttacks(vector<Attack> attacks);
+    void ShowAttacksInfo();
+    void AssignPlayerAttacks(Attacks attacks);
+    void AssignPlayerHealth(int healthToAssign);
     void TakeDamage(int amount);
+    void HealUp();
+    void HealUp(int healthToHeal);
 
     Player();
     /// <summary>
@@ -38,15 +44,17 @@ public:
     /// <param name="cooldown">: Attack cooldown</param>
     /// <param name="choice">: Choice number</param>
     /// <param name="attacks">: Attacks of character</param>
-    Player(string name, int health, int damage, int cooldown, int choice, vector<Attack> attacks);
+    Player(string name, int health, int damage, int cooldown, int choice, Attacks attacks);
 
 private:
     string playerName;
     int playerHealth;
+    int playerMaxHealth;
     int playerDamage;
     int playerCooldown;
     int characterChoice;
-    vector<Attack> playerAttacks;
+    //bool dead = false;
+    Attacks playerAttacks;
 };
 
 #endif //TEXTBASED_FIGHTING_PLAYER_H

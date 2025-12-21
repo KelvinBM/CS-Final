@@ -9,9 +9,12 @@ public:
 	Game(int fightingRounds);
 	Game(vector<Player> heroesList, vector<Player> villainsList, int fightingRounds = 4);
 	void PlayGame();
+	void RunTheFights();
+	void TimeToAttack();
 	void FightingScenario1();
 private:
-	Player choice; // character choice of player
+	Player chosenPlayer; // character choice of player
+	Player enemy;
 	vector<Player> heroes; // choose from
 	vector<Player> villains; // fighting against
 	int rounds;
