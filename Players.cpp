@@ -1,11 +1,11 @@
-#include "Players.h"
+﻿#include "Players.h"
 #include <chrono>
 #include <thread>
 
 
 vector<Player> Players::GetDefaultHeroes() { // only need to call once
 	Attack runAway = Attack();// default attack // assigned (2)
-	Attack punch = Attack("punch", 5, 3); // assigend (3)
+	Attack punch = Attack("Punch", 5, 3); // assigend (3)
 
 
 	// -------------------------------------------------------------------------------------------- //
@@ -45,18 +45,19 @@ vector<Player> Players::GetDefaultHeroes() { // only need to call once
 
 
 	// -------------------------------------------------------------------------------------------- //
-	Player minuscle = Player("Ratatouie", 85, 15, 0, 4);
-	Attacks minuscleAttacks;
-	minuscleAttacks.AssignAttack(runAway);// 2
-	minuscleAttacks.AssignAttack(punch);// 3
-	minuscleAttacks.AssignAttack("Jugular", 22, "Uppercut to the jugular", 4);// 4
-	minuscle.AssignPlayerAttacks(minuscleAttacks);
+	Player ratatouie = Player("Ratatouie", 85, 15, 0, 4);
+	Attacks ratatouieAttacks;
+	ratatouieAttacks.AssignAttack(runAway);// 2
+	ratatouieAttacks.AssignAttack(punch);// 3
+	ratatouieAttacks.AssignAttack("Jugular", 22, "Uppercut to the jugular", 4);// 4
+	ratatouie.AssignPlayerAttacks(ratatouieAttacks);
 
 
 	// -------------------------------------------------------------------------------------------- //
-	Player secret = Player("YOU WILL NOT SURVIVE", 1000000, 1000000, 0, 7); // cheat character // hidden from players in beginning // they must input random choice and might possibly get it
+	Player secret = Player("YOU WILL NOT SURVIVE", 1000000, 1000000, 0, -1); // cheat character // hidden from players in beginning // they must input random choice and might possibly get it
 	Attacks secretAttacks;
-	secretAttacks.AssignAttack("THE END", 100000000000000000, "YOU ARE COOKED BUDDY", 2);// 2 since this character doesn't run away
+	secretAttacks.AssignAttack(runAway);// 2
+	secretAttacks.AssignAttack("THE END", 100000000000000000, "YOU ARE COOKED BUDDY", 3);// 2 since this character doesn't run away
 	secret.AssignPlayerAttacks(secretAttacks);
 
 
@@ -68,7 +69,7 @@ vector<Player> Players::GetDefaultHeroes() { // only need to call once
 	players.push_back(destroyer);
 	players.push_back(valiant);
 	players.push_back(vagabond);
-	players.push_back(minuscle);
+	players.push_back(ratatouie);
 	players.push_back(secret);
 
 	characters = players;
@@ -77,7 +78,7 @@ vector<Player> Players::GetDefaultHeroes() { // only need to call once
 
 vector<Player> Players::GetDefaultVillains() { // only need to call once
 	Attack runAway = Attack();// default attack // assigned (2)
-	Attack punch = Attack("punch", 7, 3);// assigned (3)
+	Attack punch = Attack("Punch", 7, 3);// assigned (3)
 
 	// -------------------------------------------------------------------------------------------- //
 	Player defaultVillain = Player();
@@ -116,7 +117,7 @@ vector<Player> Players::GetDefaultVillains() { // only need to call once
 	Attacks cocomelonAttacks;
 	cocomelonAttacks.AssignAttack(runAway);// 2
 	cocomelonAttacks.AssignAttack(punch);// 3
-	cocomelonAttacks.AssignAttack("GooGoo GaGa", 300, "Hope you don't get this baby", 4);// 4
+	cocomelonAttacks.AssignAttack("GooGoo GaGa", 400, "GooGoo GaGa ~~ Translation: Hope you don't get hit by this🥶👶", 4);// 4
 	cocomelon.AssignPlayerAttacks(cocomelonAttacks);
 
 
@@ -141,14 +142,6 @@ vector<Player> Players::GetPlayers() {
 void Players::PrintCharacterInfo() {
 	for (int i = 0; i < characters.size() - 1; i++) {
 		characters.at(i).ShowPlayerInfo();
-		this_thread::sleep_for(chrono::seconds(1));
+		this_thread::sleep_for(chrono::seconds(2));
 	}
 }
-
-
-/*
-
-	vector<Player> GetPlayers();
-	void AssignPlayers();
-
-*/

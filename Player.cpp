@@ -38,6 +38,10 @@ string Player::GetName() {
     return playerName;
 }
 
+int Player::GetPlayerChoice() {
+    return characterChoice;
+}
+
 int Player::GetHealth() {
     return playerHealth;
 }
@@ -53,6 +57,28 @@ int Player::GetAttackDamage() {
 int Player::GetCooldown() {
     return playerCooldown;
 }
+
+Attacks Player::GetCharacterAttacks() {
+    return playerAttacks;
+}
+
+Attack Player::GetChosenAttack(int attackChoice) {
+    vector<Attack> availableAttacks = playerAttacks.GetAttacks();
+    Attack currAttack;
+
+    for (int i = 0; i < playerAttacks.GetNumAttacks(); i++) {
+        currAttack = availableAttacks.at(i);
+
+        if (attackChoice == currAttack.GetAssignedNum()) {
+            return currAttack;
+        }
+    }
+
+    // for if none are found
+    currAttack.SetAssignedNum(-1);
+    return currAttack;
+}
+
 
 void Player::ShowPlayerInfo() {
     cout << endl;
@@ -80,14 +106,14 @@ void Player::AssignPlayerAttacks(Attacks attacks) {
 }
 
 void Player::AssignPlayerHealth(int healthToAssign) {
-
+    playerHealth = healthToAssign;
 }
 
-
 void Player::TakeDamage(int amount) {
-    if (amount < 0) return;
-    playerHealth -= amount;
-    if (playerHealth < 0) playerHealth = 0;
+    if (amount > 0)
+        playerHealth -= amount;
+    if (playerHealth < 0) 
+        playerHealth = 0;
 }
 
 void Player::HealUp() {

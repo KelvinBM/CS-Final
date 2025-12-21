@@ -50,3 +50,19 @@ void Attack::SetDesc(string desc) {
 void Attack::SetAssignedNum(int assignNum) {
 	assignedNum = assignNum;
 }
+
+int Attack::GetAssignedNum() {
+	return assignedNum;
+}
+
+int Attack::GetAttackDamage() {
+	return attackDamage;
+}
+
+string Attack::GetAttackName() {
+	return attackDesc;
+}
+
+string Attack::GetAttackDesc() {
+	return attackDesc;
+}

@@ -11,12 +11,15 @@ using namespace std;
 
 class Player{
 public:
-    //Player SelectPlayer();
+
     string GetName();
+    int GetPlayerChoice();
     int GetHealth();
     int GetMaxHealth();
     int GetAttackDamage();
     int GetCooldown();
+    Attacks GetCharacterAttacks();
+    Attack GetChosenAttack(int attackChoice);
     void ShowPlayerInfo();
     void ShowAttacksInfo();
     void AssignPlayerAttacks(Attacks attacks);

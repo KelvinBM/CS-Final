@@ -6,6 +6,7 @@
 #include <thread>
 
 Game::Game() {
+	srand(time(0));
 	Players defaults = Players();
 	heroes = defaults.GetDefaultHeroes();
 	villains = defaults.GetDefaultVillains();
@@ -32,6 +33,8 @@ void Game::FightingScenario1() {
 }
 
 void Game::PlayGame() {
+
+	// Intro(); //
 
 	cout << "Choose your hero by number:" << endl;
 	this_thread::sleep_for(chrono::seconds(2));
@@ -61,9 +64,17 @@ void Game::PlayGame() {
 	chosenPlayer = heroes.at(choice);
 
 
-	srand(time(0));
-	int villianChoice = rand() % villains.size();
+	int villianChoice = rand() % villains.size() + 1;
 	enemy = villains.at(villianChoice);
+
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+
+	// MODIFY : ADD SCENARIO HERE : BEFORE FIGHTING //
+	// BeforeFightEscenario(); // story before fighting
 
 	cout << "...................................................." << endl;
 	cout << endl;
@@ -81,52 +92,27 @@ void Game::PlayGame() {
 	cout << endl;
 	cout << "...................................................." << endl;
 	cout << endl;
+	cout << endl << endl;
 	
 	this_thread::sleep_for(chrono::seconds(5));
 
-	cout << endl << endl << endl << endl << endl;
-	cout << endl << endl << endl << endl << endl;
-	cout << endl << endl << endl << endl << endl;
-	cout << endl << endl << endl << endl << endl;
-	cout << endl << endl << endl << endl << endl;
+	SpaceMax();
 
 	RunTheFights();
 }
 
 void Game::RunTheFights() {
 	while (chosenPlayer.GetHealth() > 0 && enemy.GetHealth() > 0) {
-		cout << "-----------------------------------------------------------" << endl;
-		cout << "   Your Health: " << chosenPlayer.GetHealth() << " ||  Enemy Health: " << enemy.GetHealth() << " | " << endl;
-		cout << "-----------------------------------------------------------" << endl;
-		cout << endl;
 
-		// attacks to choose from //
-		chosenPlayer.ShowAttacksInfo();
-
-
-
-		int action;
-		cin >> action;
-		if (action == 1) {
-			int dmg = chosenPlayer.GetAttackDamage();
-			this_thread::sleep_for(chrono::seconds(1));
-			cout << "You attack and deal " << dmg << " damage." << endl;
-			enemy.TakeDamage(dmg);
-		}
-		else {
-			this_thread::sleep_for(chrono::seconds(1));
-			cout << "You do nothing" << endl;
-		}
-
+		TimeToAttack();
 		if (enemy.GetHealth() <= 0) break;
 
-		int enemyDmg;
-		enemyDmg = rand() % (enemy.GetAttackDamage() + 1);
-		cout << "Enemy attacks and deals " << enemyDmg << " damage" << endl;
-		chosenPlayer.TakeDamage(enemyDmg);
+		EnemyAttacks();
+		if (chosenPlayer.GetHealth() <= 0) break;
+
 	}
 	if (chosenPlayer.GetHealth() <= 0) {
-		cout << "You died. Game over." << endl;
+		cout << "You died. Game Over." << endl;
 	}
 	else {
 		cout << "You Defeated The Enemy." << endl;
@@ -134,8 +120,119 @@ void Game::RunTheFights() {
 }
 
 void Game::TimeToAttack() {
+	cout << "-----------------------------------------------------------------------------" << endl;
+	cout << "\t     |  Your Health: " << chosenPlayer.GetHealth() << "  ||  " << enemy.GetName() << "'s Health: " << enemy.GetHealth() << "  | " << endl; //" | Round: " << endl;
+	cout << "-----------------------------------------------------------------------------" << endl;
 	cout << endl;
-	cout << "\t It's your turn to attack" << endl;
 
-	cout << "\t Pick one of your available actions" << endl;
+	this_thread::sleep_for(chrono::seconds(3));
+
+	cout << endl;
+	cout << "    *[ It's your turn to attack, pick one of your available actions ]*" << endl;
+	cout << endl << endl;
+	this_thread::sleep_for(chrono::seconds(5));
+
+	cout << "   Available actions" << endl << endl;
+	cout << "\t  1) Default Attack" << endl; // "\n 2) Do nothing(other options soon)" << endl;
+	cout << "\t  - Damage: " << chosenPlayer.GetAttackDamage();
+	// attacks to choose from //
+	chosenPlayer.ShowAttacksInfo();
+
+	int actionChoice;
+	cout << "Your selection: ";
+	cin >> actionChoice;
+
+
+	int heroDmg;
+	if (actionChoice == 1) {
+		heroDmg = chosenPlayer.GetAttackDamage();
+		Waiting();
+
+		cout << "You attack and deal " << heroDmg << " damage to " << enemy.GetName() << " " << endl;
+		enemy.TakeDamage(heroDmg);
+		cout << "Now " << enemy.GetName() << " has " << enemy.GetHealth() << " health left" << endl;
+
+	}
+	else if (actionChoice > 1) {
+		heroDmg = chosenPlayer.GetChosenAttack(actionChoice).GetAttackDamage();
+		Waiting();
+		cout << endl << endl;
+		cout << "You attack and deal " << heroDmg << " damage to " << enemy.GetName() << " " << endl;
+		enemy.TakeDamage(heroDmg);
+		cout << "Now " << enemy.GetName() << " has " << enemy.GetHealth() << " health left" << endl;
+
+		if (enemy.GetHealth() <= 15 && enemy.GetHealth() >= 5) {
+			EnemyInDisdainLevel1();
+		}
+		else if (enemy.GetHealth() <= 5) {
+			EnemyInDisdainLevel2();
+		}
+
+	}
+	else {
+		this_thread::sleep_for(chrono::seconds(1));
+		cout << "You do nothing" << endl;
+	}
+	cout << endl;
+	cout << endl;
+	Waiting();
+	cout << endl;
+	cout << endl;
+}
+
+void Game::EnemyAttacks() {
+	int numAttacks = enemy.GetCharacterAttacks().GetNumAttacks();
+	int randAttackChoice = rand() % numAttacks + 1;
+	int enemyDmg;
+
+	if (randAttackChoice == 1) {
+		enemyDmg = enemy.GetAttackDamage();
+	}
+	else {
+		enemyDmg = enemy.GetChosenAttack(randAttackChoice).GetAttackDamage();
+	}
+
+
+	//enemyDmg = rand() % (enemy.GetAttackDamage() + 1);
+	cout << "Enemy attacks and deals " << enemyDmg << " damage" << endl;
+	chosenPlayer.TakeDamage(enemyDmg);
+
+	cout << endl;
+	cout << endl;
+	Waiting();
+	cout << endl;
+	cout << endl;
+}
+
+void Game::Waiting() {
+	cout << endl;
+	this_thread::sleep_for(chrono::seconds(1));
+	cout << "..";
+	this_thread::sleep_for(chrono::seconds(1));
+	cout << "..";
+	this_thread::sleep_for(chrono::seconds(1));
+	cout << "..";
+	this_thread::sleep_for(chrono::seconds(1));
+	cout << "..";
+	this_thread::sleep_for(chrono::seconds(1));
+	cout << endl << endl;
+}
+
+void Game::SpaceMax() {
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+}
+
+void Game::EnemyInDisdainLevel1() {
+	cout << "   *" << enemy.GetName() << " Is now soo low in health that fear is the only thing it feels." << endl;
+	cout << endl;
+}
+
+void Game::EnemyInDisdainLevel2() {
+	cout << "   *" << enemy.GetName() << " says he gives up. WILL YOU SPARE HIM???" << endl;
+	cout << endl;
 }

@@ -11,7 +11,12 @@ public:
 	void PlayGame();
 	void RunTheFights();
 	void TimeToAttack();
+	void EnemyAttacks();
 	void FightingScenario1();
+	void EnemyInDisdainLevel1();
+	void EnemyInDisdainLevel2();
+	void SpaceMax();
+	void Waiting();
 private:
 	Player chosenPlayer; // character choice of player
 	Player enemy;

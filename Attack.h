@@ -18,6 +18,10 @@ public:
 	void SetDamage(int damage);
 	void SetDesc(string desc);
 	void SetAssignedNum(int assignNum);
+	int GetAssignedNum();
+	int GetAttackDamage();
+	string GetAttackName();
+	string GetAttackDesc();
 
 private:
 	int assignedNum;
