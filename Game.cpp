@@ -107,14 +107,9 @@ void Game::Intro() {
 	chosenPlayer = heroes.at(choice);
 
 
-<<<<<<< HEAD
 	int villianChoice = rand() % villains.size();
 	enemy = villains.at(villianChoice);
 	//enemy = villains.at(0);// for testing
-=======
-	int villianChoice = rand() % villains.size() + 1;
-	enemy = villains.at(villianChoice);
->>>>>>> 4f2f7dbb378e4e0a1495d741a3abbef69a9d8749
 
 	cout << endl << endl << endl << endl << endl;
 	cout << endl << endl << endl << endl << endl;

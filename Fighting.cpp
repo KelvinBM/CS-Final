@@ -8,17 +8,15 @@
 #include "Players.h"
 #include "Intro.h"
 using namespace std;
-
 int main() {
-  //  Intro Test;
- //   Test.GameIntroduction();
-    bool playAgain = true;
+
     cout << "Hello Player this game is a turned based fighting game where you choose a hero and fight against villains." << endl;
     cout << "You can also play the story mode if you want more than just the fighting aspect." << endl;
     cout << "Which would you like to do \n 1. Fighting Mode \n 2. Story Mode" << endl;
     int modeChoice;
     cin >> modeChoice;
     if (modeChoice == 1) {
+        bool playAgain = true;
         cout << "You have chosen Fighting Mode" << endl;
         Game fightingGame = Game();
         while (playAgain) {
@@ -40,7 +38,10 @@ int main() {
         cout << "Before you start your adventure what would you like to be called?" << endl;
         string playerName;
         getline(cin, playerName);
-        cout << "Welcome " << playerName << " what class would you like to be?" << endl;
+        Prologue(playerName);
+        Player customPlayer = Player(playerName, 100, 8, 0, 0);
+
+
     }
 
 
