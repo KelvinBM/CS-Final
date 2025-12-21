@@ -12,14 +12,26 @@ int main() {
 
     cout << "Hello Player this game is a turned based fighting game where you choose a hero and fight against villains." << endl;
     cout << "You can also play the story mode if you want more than just the fighting aspect." << endl;
-    cout << "Which would you like to do \n 1. Fighting Mode \n 2. Story Mode" << endl;
+    cout << endl;
+    cout << endl;
+    cout << "Which would you like to do \n\n 1. Fighting Mode \n 2. Story Mode" << endl;
+    cout << endl;
+    cout << "Enter choice number: ";
+
     int modeChoice;
     cin >> modeChoice;
     if (modeChoice == 1) {
         bool playAgain = true;
-        cout << "You have chosen Fighting Mode" << endl;
         Game fightingGame = Game();
+
+        fightingGame.SpaceMax();
+        cout << "You have chosen Fighting Mode" << endl;
+        fightingGame.SpaceMed();
+
+        this_thread::sleep_for(chrono::seconds(2));
+
         while (playAgain) {
+            fightingGame.SpaceMed();
             fightingGame.PlayGame();
             cout << "Would you like to play again? (1 for yes, 2 for no)" << endl;
             int Replay;
@@ -35,9 +47,10 @@ int main() {
     }
     else if (modeChoice == 2) {
         cout << "You have chosen the Story Mode" << endl;
-        cout << "Before you start your adventure what would you like to be called?" << endl;
+        cout << "Before you start your adventure what would you like to be called? " << endl;
         string playerName;
         getline(cin, playerName);
+
         Prologue(playerName);
         Player customPlayer = Player(playerName, 100, 8, 0, 0);
 

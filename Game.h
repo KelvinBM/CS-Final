@@ -17,6 +17,7 @@ public:
 	void EnemyInDisdainLevel1();
 	void EnemyInDisdainLevel2();
 	void SpaceMax();
+	void SpaceMed();
 	void Waiting();
 	void WriteSentenceNoEndl(string sentence);
 private:

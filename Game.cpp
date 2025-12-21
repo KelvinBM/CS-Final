@@ -71,11 +71,11 @@ void Game::PlayGame() {
 
 void Game::Intro() {
 	srand(time(0));
-	cout << "Choose your hero by number:" << endl;
+	cout << "Choose your hero by number" << endl;
 
-	//this_thread::sleep_for(chrono::seconds(2));
-	cout << "------------------------" << endl;
-	//this_thread::sleep_for(chrono::seconds(2));
+	this_thread::sleep_for(chrono::seconds(3));
+	cout << "---------------------------" << endl;
+	this_thread::sleep_for(chrono::seconds(2));
 	cout << endl;
 
 	for (int i = 0; i < heroes.size() - 1; ++i) {// this allows us to not show the hidden characters
@@ -83,11 +83,13 @@ void Game::Intro() {
 		cout << "\t\t   { " << i << " }";
 		heroes.at(i).ShowPlayerInfo();
 		this_thread::sleep_for(chrono::seconds(1));
-		cout << "------";
+		cout << "---------";
 		this_thread::sleep_for(chrono::seconds(1));
 		cout << "------------";
 		this_thread::sleep_for(chrono::seconds(1));
 		cout << "------" << endl;
+		this_thread::sleep_for(chrono::seconds(2));
+
 	}
 
 	int choice = 0;
@@ -138,7 +140,7 @@ void Game::Intro() {
 	cout << endl;
 	cout << endl << endl;
 	
-	this_thread::sleep_for(chrono::seconds(3));
+	this_thread::sleep_for(chrono::seconds(6));
 }
 
 void Game::RunTheFights() {
@@ -156,13 +158,26 @@ void Game::RunTheFights() {
 		if (enemy.GetHealth() <= 15) {
 			enemyPleads = true;
 			enemy.GetCharacterAttacks().AssignAttack("Plead", 0, "Maybe he'll let me live", chosenPlayer.GetTotalAttacksCount() + 1); // makes a new attack
+			this_thread::sleep_for(chrono::seconds(3));
 		}
 
 
 		EnemyAttacks();
 		if (chosenPlayer.GetHealth() <= 0) break;
 		if (chosenPlayer.GetHealth() <= 15) {
-			chosenPlayer.GetCharacterAttacks().AssignAttack("* Plead *", 0, "Maybe I'll survive this at least", chosenPlayer.GetTotalAttacksCount() + 1); // makes a new attack
+			SpaceMed();
+
+			cout << "'Will you plead for your life?'" << endl;
+			this_thread::sleep_for(chrono::seconds(4));
+			WriteSentenceNoEndl("Enter (1) - Yes or (0) - No: ");
+
+			int decision;
+			cin >> decision;
+
+			SpaceMax();
+			if (decision == 1) {
+				chosenPlayer.GetCharacterAttacks().AssignAttack("* Plead *", 0, "Maybe I'll survive this at least", chosenPlayer.GetTotalAttacksCount() + 1); // makes a new attack
+			}
 		}
 
 	}
@@ -179,7 +194,7 @@ void Game::TimeToAttack() {
 	cout << endl;
 	cout << "    *[ It's your turn to attack, pick one of your available actions ]*" << endl;
 	cout << endl << endl;
-	this_thread::sleep_for(chrono::seconds(2));
+	this_thread::sleep_for(chrono::seconds(3));
 
 	cout << "    Available actions" << endl << endl;
 	cout << "\t  1) Default Attack" << endl; // "\n 2) Do nothing(other options soon)" << endl;
@@ -199,9 +214,12 @@ void Game::TimeToAttack() {
 
 		cout << "You attack them with your basic attack and deal " << heroDmg << " damage to " << enemy.GetName() << " " << endl;
 		enemy.TakeDamage(heroDmg);
+		this_thread::sleep_for(chrono::seconds(4));
 
 		cout << endl;
 		cout << "Now " << enemy.GetName() << " has " << enemy.GetHealth() << " health left" << endl;
+		this_thread::sleep_for(chrono::seconds(3));
+
 
 	}
 	else if (actionChoice > 1) {
@@ -216,7 +234,7 @@ void Game::TimeToAttack() {
 		if (actionChoice == 2) {
 			//cout << "You run away to recuperate some health" << endl;
 			cout << "You run away" << endl;
-			chosenPlayer.HealUp((rand() % 10) + 5);
+			chosenPlayer.HealUp(rand() % 60);
 			//cout << "Your health is now at " << chosenPlayer.GetHealth() << endl;
 		}
 		else if (enemyPleads && enemy.GetHealth() <= 15) {
@@ -238,12 +256,12 @@ void Game::TimeToAttack() {
 				youPlead = true;
 			}
 			else {
-				this_thread::sleep_for(chrono::seconds(2));
+				this_thread::sleep_for(chrono::seconds(1));
 				cout << "You do the " << chosenAttack.GetAttackName() << " -> " << chosenAttack.GetAttackDesc() << " attack and deal " << heroDmg << " damage to " << enemy.GetName() << " " << endl;
 				enemy.TakeDamage(heroDmg);
 
 				cout << endl;
-				this_thread::sleep_for(chrono::seconds(2));
+				this_thread::sleep_for(chrono::seconds(5));
 				cout << "Now " << enemy.GetName() << " has " << enemy.GetHealth() << " health left" << endl;
 			}
 		}
@@ -252,6 +270,7 @@ void Game::TimeToAttack() {
 			EnemyInDisdainLevel1();
 		}
 		else if (enemy.GetHealth() <= 15 && enemy.GetHealth() >= 5) {
+			//enemyPleads = rand() % 2;
 			enemyPleads = true;
 			EnemyInDisdainLevel2();
 		}
@@ -276,6 +295,12 @@ void Game::EnemyAttacks() {
 		if (randAttackChoice == 1) {
 			enemyDmg = enemy.GetAttackDamage();
 			cout << "Enemy hits you with their default and deals " << enemyDmg << " damage" << endl;
+			this_thread::sleep_for(chrono::seconds(4));
+			cout << endl;
+
+			chosenPlayer.TakeDamage(enemyDmg);
+			cout << "You now have " << chosenPlayer.GetHealth() << " health left" << endl;
+			this_thread::sleep_for(chrono::seconds(3));
 		}
 		else {
 			Attack enemyAttack;
@@ -286,29 +311,41 @@ void Game::EnemyAttacks() {
 			if (randAttackChoice == 2) {
 				//cout << enemy.GetName() << " runs from you to recuperate some health " << endl;
 				cout << enemy.GetName() << " runs..." << endl;
-				enemy.HealUp((rand() % 10) + 10);
+				enemy.HealUp(rand() % 100);
 				//cout << "Their health is now at " << enemy.GetHealth() << endl;
 			}
 			else {
 				if (randAttackChoice == enemy.GetTotalAttacksCount() && enemy.GetHealth() <= 15) {
 					enemyPleads = true;
 					cout << enemy.GetName() << " pleads to you, " << chosenPlayer.GetName() << ", to end the fight." << endl;
-					this_thread::sleep_for(chrono::seconds(2));
+					this_thread::sleep_for(chrono::seconds(3));
 				}
 				else if (youPlead && chosenPlayer.GetHealth() <= 15) {
 					if (enemySpares) {
 						cout << endl;
-						cout << enemy.GetName() << " spares you and says: 'I never intended to kill you in the first place'" << endl;
-						this_thread::sleep_for(chrono::seconds(2));
+						cout << enemy.GetName() << " spares you and says: '";
+						WriteSentenceNoEndl("I never intended to kill you in the first place");
+						cout << "'" << endl;
+						this_thread::sleep_for(chrono::seconds(4));
 					}
 					else {
 						cout << endl;
-						cout << enemy.GetName() << " says: 'WOMP WOMP...'" << endl;
-						this_thread::sleep_for(chrono::seconds(2));
+						cout << enemy.GetName() << " says: '";
+						WriteSentenceNoEndl("WOMP WOMP...");
+						cout << "'" << endl;
+
+						this_thread::sleep_for(chrono::seconds(3));
 					}
 				}
 				else {
 					cout << enemy.GetName() << " attacks you with the " << enemyAttack.GetAttackName() << " -> " << enemyAttack.GetAttackDesc() << " attack and deals " << enemyDmg << " damage" << endl;
+					this_thread::sleep_for(chrono::seconds(5));
+					cout << endl;
+
+					chosenPlayer.TakeDamage(enemyDmg);
+					cout << "Now you have " << chosenPlayer.GetHealth() << " health left" << endl;
+					this_thread::sleep_for(chrono::seconds(3));
+
 				}
 			}
 
@@ -327,7 +364,7 @@ void Game::EnemyAttacks() {
 		cout << endl;
 		cout << "You decide to spare who was once considered your enemy" << endl;
 		cout << endl;
-		this_thread::sleep_for(chrono::seconds(2));
+		this_thread::sleep_for(chrono::seconds(4));
 		cout << endl;
 		cout << "    * " << enemy.GetName() << " Is forever grateful for your mercy" << endl;
 		this_thread::sleep_for(chrono::seconds(3));
@@ -367,6 +404,15 @@ void Game::SpaceMax() {
 	cout << endl << endl << endl << endl << endl;
 }
 
+void Game::SpaceMed() {
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl;
+	cout << endl << endl;
+}
+
 void Game::EnemyInDisdainLevel1() {
 	this_thread::sleep_for(chrono::seconds(1));
 	cout << endl;
@@ -386,7 +432,12 @@ void Game::EnemyInDisdainLevel2() {
 
 	int decision;
 	cin >> decision;
-	youSpare = decision;
+	if (decision == 0 || decision == 1) {
+		youSpare = decision;
+	}
+	else {
+		youSpare = true;
+	}
 }
 
 void Game::WriteSentenceNoEndl(string sentence) {
