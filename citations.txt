@@ -1,0 +1,17 @@
+
+
+Kelvin - We mainly relied on what we learned in class, and, whenever I couldn't remember how to use 
+		 a particular function (for example the srand() one, I would use Ctrl + F in the classNotes.cpp 
+		 file to be reminded how).
+
+	   - I also used some knowledge I have from programming that involves including vectors of classes
+	     and chained methods to accomplish tasks like getting an attack's damage after I call a method
+		 that returns a particular attack from a vector of Attacks kept within an Attacks class (a 
+		 class that can print many attacks in a formatted manner and has other useful functions we made 
+		 to ease our game's creation and implementation - like assigning an attack in numerous ways 
+		 through distinct method overloads).
+		 
+
+
+
+
