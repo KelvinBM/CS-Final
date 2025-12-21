@@ -81,7 +81,7 @@ vector<Player> Players::GetDefaultVillains() { // only need to call once
 	Attack punch = Attack("Punch", 7, 3);// assigned (3)
 
 	// -------------------------------------------------------------------------------------------- //
-	Player defaultVillain = Player("Regular Villain Guy", 30, 10, 0, 0);
+	Player defaultVillain = Player("Regular Villain Guy", 110, 10, 0, 0);
 	// attack types for defaultVillain are set through constructor default
 	Attacks defaultAttacks;
 	defaultAttacks.AssignAttack(runAway);// 2
