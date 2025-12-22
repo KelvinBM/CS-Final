@@ -1,6 +1,8 @@
 #pragma once
-
-void TrialTwo() {
+#include "Game.h"
+int attempts = 0;
+bool TrialTwo() {
+    Game space;
     vector<string> MazeDirections = { "right", "left", "left", "right", "right", "left", "right", "right", "left", "left" };
     string playerDirection;
     cout << "Trial Two...." << endl;
@@ -21,9 +23,15 @@ void TrialTwo() {
             i++;
         }
         else {
+            attempts++;
+            space.SpaceMax();
             cout << "Wrong turn! You blink and find yourself back at the entrance of the maze." << endl;
             i = 0;
         }
         this_thread::sleep_for(chrono::seconds(1));
     }
+    if (attempts > 20) {
+        return false;
+    }
+    return true;
 }

@@ -10,6 +10,7 @@ Kelvin - We mainly relied on what we learned in class, and, whenever I couldn't 
 		 class that can print many attacks in a formatted manner and has other useful functions we made 
 		 to ease our game's creation and implementation - like assigning an attack in numerous ways 
 		 through distinct method overloads).
+		 I used google for a lot of the stuff i didnt know like the time delay
 		 
 
 

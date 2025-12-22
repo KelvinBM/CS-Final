@@ -100,10 +100,17 @@ int main() {
     this_thread::sleep_for(chrono::seconds(2));
         cout << "To begin walk through that door" << endl;
         cout << "*The being bangs his staff on the ground again and a door materializes in front of you*" << endl;
-        this_thread::sleep_for(chrono::seconds(2));
+        this_thread::sleep_for(chrono::seconds(4));
         space.SpaceMax();
         cout << "Trial One...." << endl;
-        TrialTwo();
+        bool check1 = TrialOne();
+        if (check1) {
+            WorthinessScore += 30;
+        }
+        bool check = TrialTwo();
+        if (check) {
+            WorthinessScore += 30;
+        }
         cout << "Welcome to the third and final trial. In this trial you will face... yourself." << endl;
         Game T3;
         bool trial3result = TrialThree(T3, customPlayer);
