@@ -103,6 +103,7 @@ int main() {
         this_thread::sleep_for(chrono::seconds(2));
         space.SpaceMax();
         cout << "Trial One...." << endl;
+        TrialTwo();
         cout << "Welcome to the third and final trial. In this trial you will face... yourself." << endl;
         Game T3;
         bool trial3result = TrialThree(T3, customPlayer);
@@ -114,6 +115,22 @@ int main() {
         else {
             cout << "You have failed to beat your shadow self." << endl;
             cout << "Return to the Shadow Being to see if you're worthy." << endl;
+        }
+
+        cout << "Shadow Being: You have completed the trials." << endl;
+        this_thread::sleep_for(chrono::seconds(2));
+        if (WorthinessScore < 70) {
+            cout << "Shadow Being: You are not a worthy successor of the Thunderborn name " << endl;
+            cout << "Shadow Being: Begone from my sight." << endl;
+            cout << "*The being raises his staff and a the floor opens up below of you, you fall for what seems to be an eternity*" << endl;
+            this_thread::sleep_for(chrono::seconds(2));
+            cout << "You wake up in a forest with no memory of how you got there..." << endl;
+            cout << "GAME OVER" << endl;
+        }
+        else {
+            cout << "Shadow Being: You have proven your worthiness hero." << endl;
+            cout << "Shadow Being: You are now ready to face the evil that threatens this world." << endl;
+            cout <<"TO BE CONTINUED.." << endl;
         }
     }
 
